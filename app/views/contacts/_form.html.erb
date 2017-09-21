@@ -1,0 +1,93 @@
+<div class="container">
+  <%= form_for @contact, html: { class: "form-horizontal contact-form" } do |f| %>
+      <%= error_messages_for(f.object) %>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Address</label>
+        <div class="col-sm-10">
+          <% @addr = @contact.addresses.empty? ? @contact.addresses.build : @contact.addresses %>
+          <% puts @addr.inspect %>
+          <%= f.fields_for :addresses, @addr do |address_form| %>
+              <div class="address-input">
+                <div class="address-lists">
+                  <div class="input-group addr-input">
+                    <%= address_form.text_field :door_no, class:"form-control", placeholder: 'Flat No, Building Name' %>
+                  </div>
+
+                  <div class="input-group addr-input">
+                    <%= address_form.text_field :street, class:"form-control", placeholder: 'Street' %>
+                  </div>
+
+                  <div class="input-group addr-input">
+                    <%= address_form.text_field :landmark, class:"form-control", placeholder: 'Landmark (optional)' %>
+                  </div>
+
+                  <div class="input-group addr-input">
+                    <%= address_form.text_field :city, class:"form-control", placeholder: 'City' %>
+                  </div>
+
+                  <div class="input-group addr-input">
+                    <%= address_form.text_field :state, class:"form-control", placeholder: 'State' %>
+                  </div>
+
+                  <div class="input-group addr-input">
+                    <%= address_form.text_field :pincode, class:"form-control", placeholder: 'Pincode' %>
+                  </div>
+
+                  <% if @addr.is_a?(Address) && @addr.new_record? %>
+                      <button type="button" class="btn btn-success btn-sm btn-add-address">
+                        <span class="glyphicon glyphicon-plus"></span> Add Address
+                      </button>
+                  <% else %>
+                      <button type="button" class="btn btn-success btn-sm btn-add-address" disabled>
+                        <span class="glyphicon glyphicon-plus"></span> Add Address
+                      </button>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Phone</label>
+        <div class="col-sm-10">
+          <% @phs = @contact.phones.empty? ? @contact.phones.build : @contact.phones %>
+          <%= f.fields_for :phones, @phs do |phone_number_form| %>
+              <div class="phone-list">
+                <div class="input-group phone-input">
+                  <%= phone_number_form.select :type_of, options_for_select(["Mobile","Fax","LandLine"],phone_number_form.object.type_of), {}, class: "phone-type" %>
+                  <div class="phone-number">
+                    <%= phone_number_form.text_field :number, class: "form-control", placeholder: "+1 (999) 999 9999" %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <% if @phs.is_a?(Phone) && @phs.new_record? %>
+              <button type="button" class="btn btn-success btn-sm btn-add-phone">
+                <span class="glyphicon glyphicon-plus"></span> Add Phone
+              </button>
+          <% else %>
+              <button type="button" class="btn btn-success btn-sm btn-add-phone" disabled>
+                <span class="glyphicon glyphicon-plus"></span> Add Phone
+              </button>
+          <% end %>
+        </div>
+      </div>
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
+  <% end %>
+  <hr>
+</div>

@@ -1,0 +1,39 @@
+<%= link_to 'New Contact', new_contact_path %>
+<br>
+
+<% content_for(:page_header) do %>
+Contact Management
+<% end %>
+
+  <table id="contacts" class="display table table-striped table-sm table-hover" cellspacing="0" width="100%" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>PhoneNumbers</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contacts.each do |contact| %>
+      <tr class='clickable' data-location='<%= edit_contact_path(contact) %>'>
+        <td><%= contact.name %></td>
+        <td><%= contact.email %></td>
+        <td><%= (contact.all_addresses.gsub('\n', '<br/>')).html_safe %></td>
+        <td><%= (contact.all_phones.gsub(',', '<br/>')).html_safe %></td>
+        <td><%= link_to 'Delete', contact, method: :delete %> | <%= link_to 'View', contact %></td>
+       </tr>
+       <% end %>
+     </tbody>
+   </table>
+
+  <% content_for(:extra_scripts) do %>
+
+      $(document).ready(function() {
+        $('#contacts').DataTable({ responsive:
+          true<%= ', searching: false, paging: false, info: false' if @contacts.count <= 10 %>  });
+      });
+
+  <% end %>

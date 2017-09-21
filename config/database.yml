@@ -1,0 +1,22 @@
+# MySql version 5.x
+#   gem install mysql2
+#
+#   Ensure the Mysql 2 gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: contact_history_development
+  username: root
+  password:
+  host: localhost
+
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: contact_history_test
+  username: root
+  password:
+  host: localhost

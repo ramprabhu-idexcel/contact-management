@@ -1,0 +1,35 @@
+/* Below css for contact form */
+
+.contact-form {
+  max-width:450px;
+}
+
+.addr-input {
+  width:300px;
+  margin-bottom: 2em;
+}
+
+.phone-input {
+  width: 30em;
+  margin-bottom: 2em;
+}
+
+.phone-type {
+  float: left;
+  height: 2.5em;
+}
+
+.phone-number {
+  float: left;
+  width: 14em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.btn-remove {
+  float:left;
+}
+
+.btn-add-address {
+  margin-bottom: 2em;
+}

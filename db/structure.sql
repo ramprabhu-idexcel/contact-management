@@ -44,10 +44,12 @@ DROP TABLE IF EXISTS `contacts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contacts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -87,6 +89,7 @@ CREATE TABLE `schema_migrations` (
 INSERT INTO `schema_migrations` (version) VALUES
 ('20170919110441'),
 ('20170919110701'),
-('20170919110724');
+('20170919110724'),
+('20170921112117');
 
 

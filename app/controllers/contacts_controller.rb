@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.includes(:addresses, :phones)
   end
 
   # GET /contacts/1
@@ -20,11 +20,13 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
+    add_breadcrumb 'New Contact', new_contact_path
     @contact = Contact.new
   end
 
   # GET /contacts/1/edit
   def edit
+    add_breadcrumb @contact.name
   end
 
   # POST /contacts
@@ -75,7 +77,7 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:name,:email,
+      params.require(:contact).permit(:first_name,:last_name,:email,:type,
                                       addresses_attributes: [:door_no, :street, :city, :state, :pincode, :landmark, :id],
                                       phones_attributes: [:number, :type_of, :id])
     end

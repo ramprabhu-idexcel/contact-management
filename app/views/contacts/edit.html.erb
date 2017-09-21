@@ -1,6 +1,5 @@
-<h1>Editing Contact</h1>
+<% content_for(:page_header) do %>
+    Edit Contact
+<% end %>
 
 <%= render 'form', contact: @contact %>
-
-<%= link_to 'Show', @contact %> |
-<%= link_to 'Back', contacts_path %>

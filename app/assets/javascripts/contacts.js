@@ -37,9 +37,6 @@ $(function() {
             '<input class="form-control" placeholder="Street" type="text" name="contact[addresses_attributes][' + index + '][street]" id="contact_addresses_attributes_' + index + '_street">' +
             '</div>' +
             '<div class="input-group addr-input">' +
-            '<input class="form-control" placeholder="Landmark (optional)" type="text" name="contact[addresses_attributes][' + index + '][landmark]" id="contact_addresses_attributes_' + index + '_landmark">' +
-            '</div>' +
-            '<div class="input-group addr-input">' +
             '<input class="form-control" placeholder="City" type="text" name="contact[addresses_attributes][' + index + '][city]" id="contact_addresses_attributes_' + index + '_city">' +
             '</div>' +
             '<div class="input-group addr-input">' +

@@ -33,3 +33,7 @@
 .btn-add-address {
   margin-bottom: 2em;
 }
+
+.panel-default {
+    width: 50em;
+}

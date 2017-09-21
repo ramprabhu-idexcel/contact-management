@@ -1,9 +1,91 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @contact.name %>
-</p>
+<% content_for(:page_header) do %>
+    View Contact
+<% end %>
 
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<div style="float:right">
+<%= link_to 'Edit', edit_contact_path(@contact), class: "btn btn-primary" %> |
+<%= link_to 'Back', contacts_path, class: "btn btn-info" %>
+</div>
+
+<div class="container">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Contact Name,Email & Type</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <table class="table table-sm">
+            <tbody>
+            <tr class="success">
+              <th scope="row">1</th>
+              <td>Name: </td>
+              <td><strong><%= @contact.name %></strong></td>
+            </tr>
+            <tr class="info">
+              <th scope="row">2</th>
+              <td>Email</td>
+              <td><strong><%= @contact.email %></strong></td>
+            </tr>
+            <tr class="success">
+              <th scope="row">3</th>
+              <td>Type</td>
+              <td><strong><%= @contact.type %></strong></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Contact Address</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+          <table class="table table-sm">
+            <tbody>
+            <% @contact.addresses.each_with_index do |address,index| %>
+                <tr class=<%= ((index+1) % 2) == 0 ? "success" : "info" %>>
+                  <th scope="row"><%= index+1 %></th>
+                  <td>Address<%= index+1 %>: </td>
+                  <td><strong><%= address.format.html_safe %></strong></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Contact Phone Number</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+          <table class="table table-sm">
+            <tbody>
+            <% @contact.phones.each_with_index do |phone,index| %>
+                <tr class=<%= ((index+1) % 2) == 0 ? "success" : "info" %>>
+                  <th scope="row"><%= index+1 %></th>
+                  <td><%= phone.type_of %>: </td>
+                  <td><strong><%= phone.number %></strong></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

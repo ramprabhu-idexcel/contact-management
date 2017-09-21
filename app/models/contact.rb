@@ -1,23 +1,29 @@
 class Contact < ApplicationRecord
-  attr_accessor :all_addresses, :all_phones
+  TYPE = ["Business", "Personal"]
+  self.inheritance_column = 'type'
   has_many :addresses, dependent: :destroy
   has_many :phones, dependent: :destroy
 
   accepts_nested_attributes_for :phones
   accepts_nested_attributes_for :addresses
 
-  validates :name, :email, presence: true
+  validates :first_name, :last_name, :email, :type, presence: true
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  validates_uniqueness_of :email, :if => Proc.new{|f| f.email.present? }
 
   def all_addresses
     address = ''
-    addresses.pluck(:door_no,:street,:landmark,:city,:pincode,:state).each do |add|
-      address << add.compact.to_sentence << '\n'
+    addresses.each.each do |addr|
+      address << addr.format << '\n'
     end
     address
   end
 
   def all_phones
     phones.pluck(:number).join(",")
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 end

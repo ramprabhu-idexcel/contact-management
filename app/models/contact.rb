@@ -1,5 +1,5 @@
 class Contact < ApplicationRecord
-  TYPE = ["Business", "Personal"]
+  TYPE = %w(Business Personal)
   self.inheritance_column = 'type'
   has_many :addresses, dependent: :destroy
   has_many :phones, dependent: :destroy

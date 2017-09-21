@@ -56,6 +56,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '3.5.0'
+  gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'simplecov-console'
   gem 'factory_girl_rails'

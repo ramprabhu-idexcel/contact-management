@@ -11,8 +11,8 @@ contact_lists = []
 
 50.times do
   contact_lists << {
-      first_name: Faker::Name.name,
-      last_name: Faker::Name.name,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
       email: Faker::Internet.unique.email,
       type: Contact::TYPE.sample,
       addresses_attributes: [{
@@ -30,10 +30,10 @@ contact_lists = []
                              }],
       phones_attributes: [{
                               number: Faker::PhoneNumber.cell_phone,
-                              type_of: "Mobile"
+                              type_of: 'Mobile'
                           }, {
                               number: Faker::PhoneNumber.phone_number,
-                              type_of: "LandLine"
+                              type_of: 'LandLine'
                           }]
   }
 end

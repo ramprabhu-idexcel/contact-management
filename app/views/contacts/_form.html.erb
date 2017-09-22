@@ -1,28 +1,28 @@
 <div class="container">
   <%= form_for @contact, html: { class: "form-horizontal contact-form" } do |f| %>
       <%= error_messages_for(f.object) %>
-      <div class="form-group">
+      <div class="form-group <%= f.object.errors[:first_name].empty? ? "" : "has-error" %>">
         <label class="col-sm-2 control-label">FirstName</label>
         <div class="col-sm-10">
           <%= f.text_field :first_name, class: "form-control" %>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group <%= f.object.errors[:last_name].empty? ? "" : "has-error" %>">
         <label class="col-sm-2 control-label">LastName</label>
         <div class="col-sm-10">
           <%= f.text_field :last_name, class: "form-control" %>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group <%= f.object.errors[:email].empty? ? "" : "has-error" %>">
         <label class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
           <%= f.email_field :email, class: "form-control" %>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group <%= f.object.errors[:type].empty? ? "" : "has-error" %>">
         <label class="col-sm-2 control-label">Type</label>
         <div class="col-sm-10">
           <%= f.select :type, options_for_select(Contact::TYPE,f.object.type), {}, class: "form-control" %>
@@ -37,32 +37,32 @@
           <%= f.fields_for :addresses, @addr do |address_form| %>
               <div class="address-input">
                 <div class="address-lists">
-                  <div class="input-group addr-input">
+                  <div class="input-group addr-input <%= address_form.object.errors[:door_no].empty? ? "" : "has-error" %>">
                     <%= address_form.text_field :door_no, class:"form-control", placeholder: 'Flat No, Building Name' %>
                   </div>
 
-                  <div class="input-group addr-input">
+                  <div class="input-group addr-input <%= address_form.object.errors[:street].empty? ? "" : "has-error" %>">
                     <%= address_form.text_field :street, class:"form-control", placeholder: 'Street' %>
                   </div>
 
-                  <div class="input-group addr-input">
+                  <div class="input-group addr-input <%= address_form.object.errors[:city].empty? ? "" : "has-error" %>">
                     <%= address_form.text_field :city, class:"form-control", placeholder: 'City' %>
                   </div>
 
-                  <div class="input-group addr-input">
+                  <div class="input-group addr-input <%= address_form.object.errors[:state].empty? ? "" : "has-error" %>">
                     <%= address_form.text_field :state, class:"form-control", placeholder: 'State' %>
                   </div>
 
-                  <div class="input-group addr-input">
+                  <div class="input-group addr-input <%= address_form.object.errors[:pincode].empty? ? "" : "has-error" %>">
                     <%= address_form.text_field :pincode, class:"form-control", placeholder: 'Pincode' %>
                   </div>
 
-                  <% if @addr.is_a?(Address) && @addr.new_record? %>
-                      <button type="button" class="btn btn-success btn-sm btn-add-address">
+                  <% if action_name == 'edit' || action_name == 'update' %>
+                      <button type="button" class="btn btn-success btn-sm btn-add-address" disabled>
                         <span class="glyphicon glyphicon-plus"></span> Add Address
                       </button>
                   <% else %>
-                      <button type="button" class="btn btn-success btn-sm btn-add-address" disabled>
+                      <button type="button" class="btn btn-success btn-sm btn-add-address">
                         <span class="glyphicon glyphicon-plus"></span> Add Address
                       </button>
                   <% end %>
@@ -72,6 +72,7 @@
         </div>
       </div>
 
+
       <div class="form-group">
         <label class="col-sm-2 control-label">Phone</label>
         <div class="col-sm-10">
@@ -80,18 +81,18 @@
               <div class="phone-list">
                 <div class="input-group phone-input">
                   <%= phone_number_form.select :type_of, options_for_select(Phone::TYPE,phone_number_form.object.type_of), {}, class: "phone-type" %>
-                  <div class="phone-number">
+                  <div class="phone-number <%= phone_number_form.object.errors[:number].empty? ? "" : "has-error" %>">
                     <%= phone_number_form.text_field :number, class: "form-control", placeholder: "+1 (999) 999 9999" %>
                   </div>
                 </div>
               </div>
           <% end %>
-          <% if @phs.is_a?(Phone) && @phs.new_record? %>
-              <button type="button" class="btn btn-success btn-sm btn-add-phone">
+          <% if action_name == 'edit' || action_name == 'update' %>
+              <button type="button" class="btn btn-success btn-sm btn-add-phone" disabled>
                 <span class="glyphicon glyphicon-plus"></span> Add Phone
               </button>
           <% else %>
-              <button type="button" class="btn btn-success btn-sm btn-add-phone" disabled>
+              <button type="button" class="btn btn-success btn-sm btn-add-phone">
                 <span class="glyphicon glyphicon-plus"></span> Add Phone
               </button>
           <% end %>

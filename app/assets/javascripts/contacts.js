@@ -49,4 +49,13 @@ $(function() {
             '</div>';
         $('.address-input').append('' + input);
     });
+
+
+    $('.delete-contact').click (function(){
+        if(confirm("Do you want to delete this contact ?")){
+            return true;
+        } else {
+            return false;
+        }
+    });
 })

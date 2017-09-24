@@ -51,6 +51,7 @@ gem 'cancancan', '~> 1.10'
 gem 'rolify'
 gem 'mysql2'
 gem 'bcrypt', '~> 3.1.7'
+gem 'rails_best_practices'
 gem 'therubyracer', platforms: :ruby
 group :development, :test do
   gem 'capybara', '~> 2.13.0'

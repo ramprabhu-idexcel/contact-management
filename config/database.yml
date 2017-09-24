@@ -7,16 +7,20 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: contact_history_development
-  username: root
-  password:
-  host: localhost
+  database: contact_development
+  username: <%= ENV['MYSQL_DOCKER_USER'] %>
+  password: <%= ENV['MYSQL_DOCKER_PWD'] %>
+  host: <%= ENV['MYSQL_DOCKER_HOST'] %>
+  port: <%= ENV['MYSQL_DOCKER_PORT'] %>
 
 
 test:
   adapter: mysql2
   encoding: utf8
-  database: contact_history_test
-  username: root
-  password:
-  host: localhost
+  database: contact_test
+  username: <%= ENV['MYSQL_DOCKER_USER'] %>
+  password: <%= ENV['MYSQL_DOCKER_PWD'] %>
+  host: <%= ENV['MYSQL_DOCKER_HOST'] %>
+  port: <%= ENV['MYSQL_DOCKER_PORT'] %>
+
+

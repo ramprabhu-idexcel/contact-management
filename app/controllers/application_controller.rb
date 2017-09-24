@@ -13,14 +13,6 @@ class ApplicationController < ActionController::Base
     add_breadcrumb 'Home', root_path
   end
 
-  def set_constants
-    respond_to do |format|
-      format.html do
-        # @pods = Pod.env.ids
-      end
-    end
-  end
-
   def add_breadcrumb(name, url = '')
     @breadcrumbs ||= []
     @breadcrumbs << { name: name, url: url }
@@ -40,10 +32,5 @@ class ApplicationController < ActionController::Base
     # else
     # 'login'
     # end
-  end
-
-  def configure_permitted_parameters
-    added_attrs = %i[username email password password_confirmation remember_me]
-    devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
 end

@@ -8,8 +8,8 @@ class Contact < ApplicationRecord
   accepts_nested_attributes_for :addresses
 
   validates :first_name, :last_name, :email, :type, presence: true
-  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-  validates_uniqueness_of :email, :if => Proc.new{|f| f.email.present? }
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, if: Proc.new{|f| f.email.present? }
+  validates_uniqueness_of :email, if: Proc.new{|f| f.email.present? }
 
   def all_addresses
     address = ''

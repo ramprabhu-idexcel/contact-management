@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :phone do
-    number { Faker::PhoneNumber.cell_phone }
+    number { Faker::Base.numerify('+90 (###) ### ####') }
     type_of { "Mobile" }
   end
 end

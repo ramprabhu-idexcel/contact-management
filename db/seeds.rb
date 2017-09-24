@@ -13,6 +13,7 @@ contact_lists = []
   contact_lists << {
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
+      age: Faker::Number.number(2),
       email: Faker::Internet.unique.email,
       type: Contact::TYPE.sample,
       addresses_attributes: [{
@@ -29,10 +30,10 @@ contact_lists = []
                                  pincode: Faker::Address.zip_code
                              }],
       phones_attributes: [{
-                              number: Faker::PhoneNumber.cell_phone,
+                              number: Faker::Base.numerify('+90 (###) ### ####'),
                               type_of: 'Mobile'
                           }, {
-                              number: Faker::PhoneNumber.phone_number,
+                              number: Faker::Base.numerify('+21 (###) ### ####'),
                               type_of: 'LandLine'
                           }]
   }

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <% content_for(:page_header) do %>
-    View Contact
+    (<td><strong><%= @contact.type %></strong></td>) Contact
 <% end %>
 
 <div style="float:right">
@@ -14,7 +14,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Contact Name,Email & Type</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Email Details</a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
@@ -28,13 +28,13 @@
             </tr>
             <tr class="info">
               <th scope="row">2</th>
-              <td>Email</td>
-              <td><strong><%= @contact.email %></strong></td>
+              <td>Age: </td>
+              <td><strong><%= @contact.age %></strong></td>
             </tr>
             <tr class="success">
               <th scope="row">3</th>
-              <td>Type</td>
-              <td><strong><%= @contact.type %></strong></td>
+              <td>Email: </td>
+              <td><strong><%= @contact.email %></strong></td>
             </tr>
             </tbody>
           </table>
@@ -45,7 +45,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Contact Address</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Address Details</a>
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
@@ -68,7 +68,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Contact Phone Number</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Phone Details</a>
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">

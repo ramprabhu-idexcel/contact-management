@@ -7,10 +7,11 @@ Contact Management
     <thead>
       <tr>
         <th>Name</th>
+        <th>Age</th>
         <th>Email</th>
         <th>Type</th>
         <th>Address</th>
-        <th>PhoneNumbers</th>
+        <th>PhoneNumber</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -19,6 +20,7 @@ Contact Management
       <% @contacts.each do |contact| %>
       <tr class='clickable' data-location='<%= edit_contact_path(contact) %>'>
         <td><%= contact.name %></td>
+        <td><%= contact.age %></td>
         <td><%= contact.email %></td>
         <td><%= contact.type %></td>
         <td><%= (contact.all_addresses.gsub('\n', '<br/>')).html_safe %></td>

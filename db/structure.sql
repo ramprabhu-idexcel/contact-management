@@ -26,7 +26,7 @@ CREATE TABLE `addresses` (
   PRIMARY KEY (`id`),
   KEY `index_addresses_on_contact_id` (`contact_id`),
   CONSTRAINT `fk_rails_67e9674de3` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ar_internal_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -50,8 +50,9 @@ CREATE TABLE `contacts` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `type` varchar(255) NOT NULL,
+  `age` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `phones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -66,7 +67,7 @@ CREATE TABLE `phones` (
   PRIMARY KEY (`id`),
   KEY `index_phones_on_contact_id` (`contact_id`),
   CONSTRAINT `fk_rails_0c8c68a120` FOREIGN KEY (`contact_id`) REFERENCES `contacts` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -90,6 +91,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20170919110441'),
 ('20170919110701'),
 ('20170919110724'),
-('20170921112117');
+('20170921112117'),
+('20170924151546');
 
 

@@ -8,6 +8,9 @@ RSpec.describe Contact, type: :model do
     it { should validate_presence_of(:type) }
     it { should_not allow_value("blah").for(:email) }
     it { should allow_value("a@b.com").for(:email) }
+    it { should validate_numericality_of(:age) }
+    it { should allow_value(50).for(:age) }
+    it { should_not allow_value(-50).for(:age) }
 
     it 'has a valid contact' do
       expect(FactoryGirl.build(:contact)).to be_valid

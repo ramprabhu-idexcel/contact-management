@@ -7,15 +7,14 @@ class Contact < ApplicationRecord
   accepts_nested_attributes_for :phones
   accepts_nested_attributes_for :addresses
 
-  validates :first_name, :last_name, :email, :type, presence: true
-  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, if: Proc.new{|f| f.email.present? }
-  validates_uniqueness_of :email, if: Proc.new{|f| f.email.present? }
+  validates :first_name, :last_name, :age, :email, :type, presence: true
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, if: Proc.new{ |f| f.email.present? }
+  validates_uniqueness_of :email, if: Proc.new{ |f| f.email.present? }
+  validates_numericality_of :age, less_than_or_equal_to: 100, greater_than: 0, if: Proc.new{ |f| f.age.present? }
 
   def all_addresses
     address = ''
-    addresses.each.each do |addr|
-      address << addr.format << '\n'
-    end
+    addresses.each { |addr| address << addr.format << '\n' }
     address
   end
 

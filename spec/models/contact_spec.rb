@@ -11,6 +11,8 @@ RSpec.describe Contact, type: :model do
     it { should validate_numericality_of(:age) }
     it { should allow_value(50).for(:age) }
     it { should_not allow_value(-50).for(:age) }
+    it { should allow_value('Business','Personal').for(:type) }
+    it { should_not allow_value('Bus').for(:type) }
 
     it 'has a valid contact' do
       expect(FactoryGirl.build(:contact)).to be_valid

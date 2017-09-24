@@ -9,6 +9,14 @@ RSpec.describe Address, type: :model do
     it { should validate_presence_of(:city) }
     it { should validate_presence_of(:state) }
     it { should validate_presence_of(:pincode) }
+    it { should validate_length_of(:door_no).is_at_least(2) }
+    it { should validate_length_of(:door_no).is_at_most(10) }
+    it { should validate_length_of(:city).is_at_least(2) }
+    it { should validate_length_of(:city).is_at_most(20) }
+    it { should validate_length_of(:state).is_at_least(2) }
+    it { should validate_length_of(:state).is_at_most(20) }
+    it { should validate_length_of(:pincode).is_at_least(2) }
+    it { should validate_length_of(:pincode).is_at_most(10) }
 
     it 'has a valid address' do
       expect(FactoryGirl.build(:address, contact: contact)).to be_valid

@@ -8,6 +8,8 @@ RSpec.describe Phone, type: :model do
     it { should validate_presence_of(:type_of) }
     it { should validate_length_of(:number).is_at_least(5) }
     it { should validate_length_of(:number).is_at_most(20) }
+    it { should allow_value('Mobile','Fax','LandLine').for(:type_of) }
+    it { should_not allow_value('test').for(:type_of) }
 
     it 'has a valid factory' do
       expect(FactoryGirl.build(:phone, contact: contact)).to be_valid
